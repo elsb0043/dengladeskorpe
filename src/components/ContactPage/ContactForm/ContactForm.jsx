@@ -79,6 +79,7 @@ const ContactForm = () => {
                         {/* Input for navn */}
                         <label>Navn</label>
                         <input
+                            className={styles.name}
                             required
                             name="name"
                             type="text"
@@ -91,6 +92,7 @@ const ContactForm = () => {
                         {/* Input for topic */}
                         <label>Emne</label>
                         <input
+                            className={styles.topic}
                             required
                             name="topic"
                             type="text"

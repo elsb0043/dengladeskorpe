@@ -19,7 +19,7 @@
             text-shadow: 2px 3px 3px #b9b9b9;
         }
 
-        input {
+        .name, .topic {
             padding: 1rem 0 1rem 1rem;
             width: 80vw;
             margin: 1rem;

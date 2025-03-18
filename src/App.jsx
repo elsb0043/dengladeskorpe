@@ -16,7 +16,6 @@ import Login from "./components/BackofficePage/Login/Login"
 import DishForm from "./pages/Backoffice/Forms/DishForm"
 import EmployeesForm from "./pages/Backoffice/Forms/EmployeeForm"
 import PageHeader from "./components/PageHeader/PageHeader"
-import Dishes from "./components/HomePage/Dishes/Dishes"
 import SingleviewDish from "./pages/SingleviewDish/SingleviewDish"
 
 function App() {
@@ -35,6 +34,10 @@ function App() {
     { 
       path: "/", 
       element: <HomePage />
+    },
+    { 
+      path: "/dishes/:id",
+      element: <SingleviewDish />
     },
     { 
       path: "/team", 
