@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 import Button from "../../Button/Button"
 import styles from "./form.module.css"
 
@@ -73,7 +74,6 @@ function ContactForm() {
             {sent ? (
                 // Hvis beskeden er sendt, vis en succesbesked
                 <div className={styles.successMsg}>
-                    <img src={dish.image}></img>
                     <h3>{response}</h3>
                 </div>
             ) : (
