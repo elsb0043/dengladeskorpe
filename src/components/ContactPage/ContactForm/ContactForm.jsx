@@ -1,12 +1,15 @@
 import { useState } from "react"
+import { useFetchDishes } from "../../../hooks/useFetchDishes"
 import Button from "../../Button/Button"
 import styles from "./form.module.css"
 
-const ContactForm = () => {
+function ContactForm() {
     const [formData, setFormData] = useState({ name: "", topic: "", description: "" }) // State til at gemme form data (navn, emne, beskrivelse)
     const [response, setResponse] = useState(null) // State til at gemme svarmeddelelse, f.eks. succes eller fejl
     const [errors, setErrors] = useState({}) // State til at gemme fejlbeskeder, som opstår ved validering
     const [sent, setSent] = useState(false) // State til at holde styr på, om beskeden er sendt
+    const { fetchDishById } = useFetchDishes()
+    /* const dish = fetchDishById(id) */
 
     // Funktion til at validere formularen
     const validate = () => {
@@ -72,7 +75,9 @@ const ContactForm = () => {
         <div className={styles.formContent}>
             {sent ? (
                 // Hvis beskeden er sendt, vis en succesbesked
-                <h3 className={styles.successMsg}>{response}</h3>
+                <div className={styles.successMsg}>
+                    <h3>{response}</h3>
+                </div>
             ) : (
                 <>
                     <form onSubmit={handleSubmit}>
