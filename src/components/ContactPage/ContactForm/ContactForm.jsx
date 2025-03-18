@@ -9,7 +9,7 @@ function ContactForm() {
     const [errors, setErrors] = useState({}) // State til at gemme fejlbeskeder, som opstår ved validering
     const [sent, setSent] = useState(false) // State til at holde styr på, om beskeden er sendt
     const { fetchDishById } = useFetchDishes()
-    /* const dish = fetchDishById(id) */
+    const dish = fetchDishById(1)
 
     // Funktion til at validere formularen
     const validate = () => {
@@ -76,6 +76,7 @@ function ContactForm() {
             {sent ? (
                 // Hvis beskeden er sendt, vis en succesbesked
                 <div className={styles.successMsg}>
+                    <img src={dish.image}></img>
                     <h3>{response}</h3>
                 </div>
             ) : (
