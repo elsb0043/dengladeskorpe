@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useFetchDishes } from "../../../hooks/useFetchDishes"
 import Button from "../../Button/Button"
 import styles from "./form.module.css"
 
@@ -8,8 +7,6 @@ function ContactForm() {
     const [response, setResponse] = useState(null) // State til at gemme svarmeddelelse, f.eks. succes eller fejl
     const [errors, setErrors] = useState({}) // State til at gemme fejlbeskeder, som opstår ved validering
     const [sent, setSent] = useState(false) // State til at holde styr på, om beskeden er sendt
-    const { fetchDishById } = useFetchDishes()
-    const dish = fetchDishById(1)
 
     // Funktion til at validere formularen
     const validate = () => {
