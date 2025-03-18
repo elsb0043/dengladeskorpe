@@ -5,7 +5,7 @@ function DishCard({ dish }) {
   
   return (
     <figure className={styles.dishCard}>
-      <Link to="/dishes">
+      <Link to={`/dishes/${dish._id}`}>
         <img src={dish.image} alt={dish.name} />
       </Link>
       <figcaption>
