@@ -9,8 +9,7 @@ function SingleviewDish() {
   return (
     <>
       <PageHeader
-        title={dish?.name}
-        headerImg={dish?.image}
+        title={dish.name}
       />
     </>
   )

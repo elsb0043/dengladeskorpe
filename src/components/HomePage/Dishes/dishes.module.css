@@ -1,0 +1,30 @@
+.dishes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style: none;
+
+    h2 {
+        font-size: 4rem;
+        font-weight: 300;
+        font-family: "Just Another Hand", sans-serif;
+        text-shadow: 2px 3px 3px #b9b9b9;
+        margin-bottom: 3rem;
+    }
+
+    .filterButtons {
+        background-color: #F6F0EE;
+        padding: 4rem;
+        width: 100vw;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .dishCard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        list-style: none;
+    }
+}
