@@ -125,14 +125,15 @@ const useFetchDishes = () => {
         }
     }
 
-    let pizzas = dishes.filter(dish => 
-        dish.mealType.includes("Pizzas"))
-    
-    let halfbakedPizzas = dishes.filter(dish => 
-        dish.mealType.includes("HalfbakedPizzas"))
-    
-    let durumRolls = dishes.filter(dish => 
-        dish.mealType.includes("DurumRolls"))
+    const [pizzas, setPizzas] = useState([])
+    const [halfbakedPizzas, setHalfbakedPizzas] = useState([])
+    const [durumRolls, setDurumRolls] = useState([])
+
+    const filterDishes = () => {
+        setPizzas(dishes.filter(dish => dish.mealType?.includes("Pizzas")))
+        setHalfbakedPizzas(dishes.filter(dish => dish.mealType?.includes("HalfbakedPizzas")))
+        setDurumRolls(dishes.filter(dish => dish.mealType?.includes("DurumRolls")))
+    }
         
 
     // Memoiseret funktion til at genhente retter
@@ -156,10 +157,11 @@ const useFetchDishes = () => {
         isLoading,
         refetch,
         error,
+        filterDishes,
         pizzas,
         halfbakedPizzas,
         durumRolls
-    }
+    }    
 }
 
 export { useFetchDishes }
