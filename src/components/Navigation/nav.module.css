@@ -1,0 +1,149 @@
+/* Mobile-first */
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    color: #fff;
+    height: 4rem;
+    z-index: 100; 
+
+    .navLogo {
+        width: 6rem;
+        margin: 4rem 0 0 1rem;
+        z-index: 101;
+    }
+
+    .navIcons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1006;
+
+        .hamburger {
+            color: #fff;
+            margin: 4rem 1rem 0 0;
+            z-index: 1006;
+            cursor: pointer;
+        }
+    
+        .basket {
+            margin: 1rem;
+            z-index: 1000;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .basketImg {
+                width: 6rem;
+                margin: 4rem 0 0 1rem;
+                z-index: 101;
+                position: relative;
+            }
+
+            div {
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                font-weight: bold;
+                position: absolute;
+                z-index: 101;
+                margin: 4.7rem 0 0 1rem;
+                font-family: "Just Another Hand", sans-serif;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            }
+            
+        }
+    }
+
+    .navLinks {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 1rem;
+        padding-top: 10rem;
+        gap: 2rem;
+        list-style: none;
+        background-color: rgb(48, 47, 47);
+        text-align: center;
+        z-index: 1003;
+    
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        a:hover {
+            color: #bfbfbf;
+        }
+    }
+      
+    .navLinks.open {
+        display: flex;
+    }
+}
+  
+/* Desktop */
+@media (min-width: 768px) {
+    .navBar {
+        height: 7rem;
+
+        .navLogo {
+            width: 6rem;
+            margin-left: 4rem;
+        }
+        
+        .navList {
+            display: flex;
+            justify-content: right;
+            align-items: end;
+            flex-direction: row-reverse;
+            top: 0;
+            margin-right: 3rem;
+        }
+
+        .navIcons {
+            .hamburger {
+                display: none;
+            }
+
+            .basket {
+                display: flex;
+                justify-content: right;
+                align-items: end;
+            }
+        }
+
+        .navLinks {
+            display: flex;
+            flex-direction: row;
+            position: static; 
+            width: auto;
+            height: auto;
+            background-color: transparent;
+            padding-bottom: 2.5rem;
+            padding-top: 0;
+            margin-top: 0;
+            
+            a {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

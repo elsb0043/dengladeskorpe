@@ -1,0 +1,82 @@
+/* Mobile-first */
+footer {
+    width: 100%;
+    height: 30vh;
+    padding: 3rem;
+    flex-wrap: wrap;
+    background-color: rgb(48, 47, 47);
+
+    .footerContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .footerLogo {
+            width: 10rem;
+            margin-bottom: 3rem;
+            opacity: 60%;
+        }
+
+        .footerContact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 2rem;
+
+            .footerContactInfo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    font-size: 1.5rem;
+                    color: #fff;
+                    font-family: "Just Another Hand", sans-serif;
+                }
+            }
+        }
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+    .footer {
+        height: 115vh;
+
+        .footerContent {
+            justify-content: start;
+            align-items: start;
+
+            .footerInfo {
+                .footerLogo {
+                    width: 8rem;
+                }
+
+                p {
+                    line-height: 2;
+                    max-width: 30rem;
+                }
+            }
+
+            .footerContact {
+                .footerContactInfo {
+                    justify-content: left;
+                    align-items: start;
+
+                    p {
+                        max-width: 50%;
+                        line-height: 1.8;
+                    }
+                }
+            }
+        }
+    }
+
+    .allRightsReserved {
+        max-width: 20%;
+        margin-left: 60rem;
+    }
+}

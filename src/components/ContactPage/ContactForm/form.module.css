@@ -1,0 +1,59 @@
+/* Mobile-first */
+.formContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F6F0EE;
+    width: 100vw;
+    padding: 4rem 0 4rem 0;
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        label {
+            font-size: 2rem;
+            text-shadow: 2px 3px 3px #b9b9b9;
+        }
+
+        input {
+            padding: 1rem 0 1rem 1rem;
+            width: 80vw;
+            margin: 1rem;
+            outline: none;
+            border: #000 1px solid;
+            background-color: transparent;
+            resize: none;
+            font-family: "Kurale", serif;
+            box-shadow: 5px 5px 7px 1px #c8c8c8;
+        }
+
+        textarea {
+            padding: 1rem 0 15rem 1rem;
+            width: 80vw;
+            margin: 1rem;
+            outline: none;
+            border: #000 1px solid;
+            background-color: transparent;
+            resize: none;
+            font-family: "Kurale", serif;
+            box-shadow: 5px 5px 7px 1px #c8c8c8;
+            margin-bottom: 3rem;
+        }
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+    .formContainer {
+        margin: 2rem;
+    
+        .formContent {
+            width: 40vw;
+        }
+    }
+}

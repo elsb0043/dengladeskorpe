@@ -1,0 +1,93 @@
+/* Mobile-first */
+.team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 5rem;
+
+    .teamText {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-bottom: 5rem;
+
+        h2 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            font-family: "Just Another Hand", sans-serif;
+            text-shadow: 2px 3px 3px #b9b9b9;
+            margin-bottom: 3rem;
+        }
+
+        p {
+            text-align: center;
+            line-height: 1.8;
+            font-size: 1.5rem;
+        }
+    }
+
+    .teamCards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 5rem;
+        gap: 1rem;
+
+        .teamCard {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            flex-direction: column;
+            margin: 0.5rem;
+            gap: 1rem;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .teamCardText {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                h3 {
+                    text-shadow: 2px 3px 3px #b9b9b9;
+                }
+            }
+        }
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+    .team {
+        .teamText {
+            h2 {
+                font-size: 4rem;
+            }
+    
+            h3 {
+                max-width: 100%;
+            }
+    
+            p {
+                font-size: 1.6rem;
+                max-width: 85rem;
+                line-height: 2.4;
+            }
+        }
+    
+        .teamCards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            place-content: center center;
+        }
+    }  
+}

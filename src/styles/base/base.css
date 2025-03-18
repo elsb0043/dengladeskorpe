@@ -1,0 +1,18 @@
+/*#region BASE SITE CSS START */
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-family: "Kurale", serif;
+    font-size: 0.625rem;
+}
+
+body {
+    font-size: 1.6rem;
+}
+/*#endregion BASE SITE CSS END */

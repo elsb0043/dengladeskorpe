@@ -1,0 +1,80 @@
+/* BUTTON 1 */
+.button {
+  width: 80vw;
+  padding: 1.8rem 0 1.5rem 0;
+  background-color: rgb(48, 47, 47);
+  color: #fff;
+  border: none;
+  border-radius: 8rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2.3rem;
+  font-family: "Just Another Hand", sans-serif;
+  box-shadow: 5px 5px 7px 1px #c8c8c8;
+  font-weight: 100;
+}
+
+.button:hover {
+  background-color: rgb(28, 27, 27);
+  transition: 0.4s ease-in-out;
+}
+
+/* BUTTON 2 */
+.grayButton {
+  padding: 1rem 5rem 1rem 5rem;
+  background-color: rgb(48, 47, 47);
+  color: #fff;
+  border: none;
+  border-radius: 8rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 100;
+  font-family: "Just Another Hand", sans-serif;
+  box-shadow: 5px 5px 7px 1px #c8c8c8;
+}
+
+.grayButton:hover {
+  background-color: rgb(28, 27, 27);
+  transition: 0.4s ease-in-out;
+}
+
+.redButton {
+  padding: 1rem 3rem 1rem 3rem;
+  background-color: rgb(228, 0, 0);
+  color: #fff;
+  border: none;
+  border-radius: 8rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Just Another Hand", sans-serif;
+  margin: 0.3rem;
+  font-weight: 100;
+  box-shadow: 5px 5px 7px 1px #c8c8c8;
+}
+
+.redButton:hover {
+  background-color: rgb(199, 1, 1);
+  transition: 0.4s ease-in-out;
+}
+
+.orangeButton {
+  padding: 1rem 3rem 1rem 3rem;
+  background-color: #936641;
+  color: #fff;
+  border: none;
+  border-radius: 8rem;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Just Another Hand", sans-serif;
+  margin: 0.3rem;
+  font-weight: 100;
+  box-shadow: 5px 5px 7px 1px #c8c8c8;
+}
+
+.orangeButton:hover {
+  background-color: #7d5737;
+  transition: 0.4s ease-in-out;
+}
