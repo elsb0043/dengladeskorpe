@@ -44,12 +44,12 @@ const useFetchDishes = () => {
     const [halfbakedPizzas, setHalfbakedPizzas] = useState([])
     const [durumRolls, setDurumRolls] = useState([])
 
-    // Filter funktion baseret på mealType eller ID
+    // Filter funktion baseret på category eller ID
     const filterDishes = useCallback(() => {
         if (dishes.length) {
-            setPizzas(dishes.filter(dish => dish.mealType?.includes("Pizzas") || dish._id === "Pizzas"))
-            setHalfbakedPizzas(dishes.filter(dish => dish.mealType?.includes("HalfbakedPizzas") || dish._id === "HalfbakedPizzas"))
-            setDurumRolls(dishes.filter(dish => dish.mealType?.includes("DurumRolls") || dish._id === "DurumRolls"))
+            setPizzas(dishes.filter((dish) => dish.category.includes("Pizzas")))
+            setHalfbakedPizzas(dishes.filter((dish) => dish.category.includes("HalfbakedPizzas")))
+            setDurumRolls(dishes.filter((dish) => dish.category.includes("DurumRolls")))
         }
     }, [dishes])
 
