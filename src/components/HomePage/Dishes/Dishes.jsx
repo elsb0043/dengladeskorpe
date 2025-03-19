@@ -8,7 +8,14 @@ function Dishes() {
     const [isDropdownVisible, setIsDropdownVisible] = useState(false)
     const { dishes, error, isLoading } = useFetchDishes()
 
-    const menuItems = [...new Set(dishes?.map(dish => dish.category))] 
+    const menuItems = [...new Set(dishes?.map(dish => dish.category))]
+
+    // Funktion til at hente baggrund image til en kategori
+    const getCategoryBackground = (category) => {
+        // Find den første ret der matcher den tildelte kategori
+        const dish = dishes.find(dish => dish.category === category)
+        return dish ? `url(${dish.image})` : null 
+    }
 
     useEffect(() => {
         if (dishes.length > 0) {
@@ -35,7 +42,16 @@ function Dishes() {
                 <section>
                     <div className={styles.filterButtons}>
                         {menuItems.length > 0 && menuItems.map((category) => (
-                            <button key={category} onClick={() => handleFilterChange(category)}>
+                            <button
+                                key={category}
+                                onClick={() => handleFilterChange(category)}
+                                style={{
+                                    backgroundImage: getCategoryBackground(category),
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    backgroundRepeat: 'no-repeat'
+                                }}
+                            >
                                 {category}
                             </button>
                         ))}

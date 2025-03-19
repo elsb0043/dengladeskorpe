@@ -35,6 +35,8 @@
             z-index: 101;
             font-family: "Just Another Hand", sans-serif;
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            height: 11rem;
+            width: 11rem;
         }
     }
 

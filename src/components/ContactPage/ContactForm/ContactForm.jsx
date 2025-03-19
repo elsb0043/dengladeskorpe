@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { useFetchDishes } from "../../../hooks/useFetchDishes"
 import Button from "../../Button/Button"
 import styles from "./form.module.css"
 
@@ -8,6 +8,7 @@ function ContactForm() {
     const [response, setResponse] = useState(null) // State til at gemme svarmeddelelse, f.eks. succes eller fejl
     const [errors, setErrors] = useState({}) // State til at gemme fejlbeskeder, som opstår ved validering
     const [sent, setSent] = useState(false) // State til at holde styr på, om beskeden er sendt
+    const { dishes } = useFetchDishes()
 
     // Funktion til at validere formularen
     const validate = () => {
@@ -69,11 +70,25 @@ function ContactForm() {
         setFormData({ name: "", topic: "", description: "" })
     }
 
+    const getCategoryBackground = (category) => {
+        // Find the first dish that matches the category
+        const dish = dishes.find(dish => dish.category === category)
+        return dish ? `url(${dish.image})` : null // Assuming dish.image is the URL
+    }
+
     return (
         <div className={styles.formContent}>
             {sent ? (
                 // Hvis beskeden er sendt, vis en succesbesked
-                <div className={styles.successMsg}>
+                <div 
+                    className={styles.successMsg}
+                    style={{
+                        backgroundImage: getCategoryBackground(category),
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                >
                     <h3>{response}</h3>
                 </div>
             ) : (
