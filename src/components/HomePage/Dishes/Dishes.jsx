@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useFetchDishes } from "../../../hooks/useFetchDishes"
 import DishCard from "./dishCard/DishCard"
 import styles from './dishes.module.css'
 
 function Dishes() {
-    const { pizzas, halfbakedPizzas, durumRolls, error, isLoading } = useFetchDishes()
     const [filteredDishes, setFilteredDishes] = useState([])
-    const [activeFilter, setActiveFilter] = useState("Pizzas")
     const [isDropdownVisible, setIsDropdownVisible] = useState(false)
+    const { dishes, error, isLoading } = useFetchDishes(setFilteredDishes)
 
-    // Filter baseret på dishId eller _id
-    const filters = {
-        Pizzas: pizzas,
-        HalfbakedPizzas: halfbakedPizzas,
-        DurumRolls: durumRolls,
-    }
 
-    // Håndter filter skift ved brug af dishId
-    const handleFilterChange = (dishId) => {
-        setActiveFilter(dishId)
-        setFilteredDishes(filters[dishId] || [])
+    // Håndter filter
+    const menuItems = ["All", ...new Set((filteredDishes || []).map(dish => dish.category))]
+
+    const handleFilterChange = (category) => {
+        if (category === "All") {
+            setFilteredDishes(dishes)
+        } else {
+            setFilteredDishes(dishes.filter(dish => dish.category === category))
+        }
         setIsDropdownVisible(true)
     }
-
-    // Default filter til pizzaer
-    useEffect(() => {
-        setFilteredDishes(pizzas)
-    }, [pizzas])
 
     return (
         <div className={styles.dishes}>
@@ -37,24 +30,11 @@ function Dishes() {
             ) : (
                 <section>
                     <div className={styles.filterButtons}>
-                        <button
-                            className={activeFilter === "Pizzas" ? styles.active : ""}
-                            onClick={() => handleFilterChange("Pizzas")}
-                        >
-                            Pizzaer
-                        </button>
-                        <button
-                            className={activeFilter === "HalfbakedPizzas" ? styles.active : ""}
-                            onClick={() => handleFilterChange("HalfbakedPizzas")}
-                        >
-                            Halvbagte pizzaer
-                        </button>
-                        <button
-                            className={activeFilter === "DurumRolls" ? styles.active : ""}
-                            onClick={() => handleFilterChange("DurumRolls")}
-                        >
-                            Durum ruller
-                        </button>
+                        {menuItems.map((category) => (
+                            <button key={category} onClick={() => handleFilterChange(category)}>
+                                {category}
+                            </button>
+                        ))}
                     </div>
 
                     {error && <p>Kunne ikke hente retterne. Fejl: {error}</p>}
