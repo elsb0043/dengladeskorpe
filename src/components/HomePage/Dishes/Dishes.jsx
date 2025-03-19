@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useFetchDishes } from "../../../hooks/useFetchDishes"
 import DishCard from "./dishCard/DishCard"
 import styles from './dishes.module.css'
@@ -6,17 +6,21 @@ import styles from './dishes.module.css'
 function Dishes() {
     const [filteredDishes, setFilteredDishes] = useState([])
     const [isDropdownVisible, setIsDropdownVisible] = useState(false)
-    const { dishes, error, isLoading } = useFetchDishes(setFilteredDishes)
+    const { dishes, error, isLoading } = useFetchDishes()
 
+    const menuItems = [...new Set(dishes?.map(dish => dish.category))] 
 
-    // Håndter filter
-    const menuItems = ["All", ...new Set((filteredDishes || []).map(dish => dish.category))]
+    useEffect(() => {
+        if (dishes.length > 0) {
+            setFilteredDishes(dishes)
+        }
+    }, [dishes])
 
     const handleFilterChange = (category) => {
-        if (category === "All") {
-            setFilteredDishes(dishes)
-        } else {
+        if (category) {
             setFilteredDishes(dishes.filter(dish => dish.category === category))
+        } else {
+            setFilteredDishes(dishes)
         }
         setIsDropdownVisible(true)
     }
@@ -30,7 +34,7 @@ function Dishes() {
             ) : (
                 <section>
                     <div className={styles.filterButtons}>
-                        {menuItems.map((category) => (
+                        {menuItems.length > 0 && menuItems.map((category) => (
                             <button key={category} onClick={() => handleFilterChange(category)}>
                                 {category}
                             </button>

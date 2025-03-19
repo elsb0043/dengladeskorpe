@@ -6,19 +6,28 @@ import PageHeader from "../../components/PageHeader/PageHeader"
 
 function SingleviewDish() {
   const { id } = useParams()
-  const { fetchDishById, isLoading, error } = useFetchDishes()
+  const { fetchDishById, error } = useFetchDishes()
   const [dish, setDish] = useState(null)
+  const [localLoading, setLocalLoading] = useState(true)
 
   useEffect(() => {
     const getDish = async () => {
-      const fetchedDish = await fetchDishById(id)
-      if (fetchedDish) setDish(fetchedDish)
+      if (!id) return
+      setLocalLoading(true) 
+      try {
+        const fetchedDish = await fetchDishById(id)
+        if (fetchedDish) setDish(fetchedDish)
+      } catch (error) {
+        console.error("Error fetching dish:", error)
+      } finally {
+        setLocalLoading(false)
+      }
     }
 
     getDish()
   }, [id, fetchDishById])
 
-  if (isLoading) return <p>Loading...</p>
+  if (localLoading) return <p>Loading...</p>
   if (error) return <p>Error: {error}</p>
   if (!dish) return <p>Dish not found</p>
 

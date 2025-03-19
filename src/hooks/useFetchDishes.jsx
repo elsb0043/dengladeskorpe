@@ -115,7 +115,8 @@ const useFetchDishes = () => {
             }
     
             const dish = await response.json()
-            return dish.data[0]
+
+            return dish.data
         } catch (error) {
             setError(error.message)
             console.error("Error fetching dish:", error)
