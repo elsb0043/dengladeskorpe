@@ -7,6 +7,7 @@ const useFetchEmployees = () => {
     const [isLoading, setIsLoading] = useState(false)
     const { token } = useAuthContext()
 
+
     // HENT ALLE EMPLOYEES 
     const fetchEmployees = useCallback(async () => {
         setError(null)
@@ -24,8 +25,8 @@ const useFetchEmployees = () => {
     }, [])
 
     
-      // OPRET EMPLOYEES
-      const createEmployee = async (formData) => {
+    // OPRET EMPLOYEES
+    const createEmployee = async (formData) => {
         try {
             const response = await fetch("http://localhost:3042/employee", {
                 method: "POST",
@@ -114,6 +115,7 @@ const useFetchEmployees = () => {
     const refetch = useCallback(() => {
         fetchEmployees()
     }, [fetchEmployees])
+    
     
     useEffect(() => {
         fetchEmployees()
