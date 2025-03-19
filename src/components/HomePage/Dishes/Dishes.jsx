@@ -28,8 +28,8 @@ function Dishes() {
         setFilteredDishes(pizzas)
     }, [pizzas])
 
-    // Vis retter baseret på filteredDishes, hvis den er tilgængelig, eller vis alle retter
-    const dishesArray = filteredDishes?.length > 0 ? filteredDishes : dishes || []
+    // Vis retter baseret på filteredDishes, hvis den er tilgængelig
+    const dishesArray = filteredDishes?.length > 0 ? filteredDishes : []
 
     return (
         <div className={styles.dishes}>
