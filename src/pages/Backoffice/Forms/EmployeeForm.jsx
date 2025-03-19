@@ -87,11 +87,12 @@ const EmployeesForm = ({ isEditMode }) => {
             <div>
                 <label htmlFor='image'>Vælg billede (valgfrit):</label>
                     {image && <img className={styles.previewImage} src={image} />}
-                <input id='image' type='file' onChange={handleImageChange} />
+                <input className={styles.backInput} id='image' type='file' onChange={handleImageChange} />
             </div>
             <div>
                 <label htmlFor='name'>Navn:</label>
-                <input
+                <input 
+                    className={styles.backInput}
                     id='name'
                     type='text'
                     value={name}
@@ -101,7 +102,8 @@ const EmployeesForm = ({ isEditMode }) => {
             </div>
             <div>
                 <label htmlFor='position'>Job:</label>
-                <input
+                <input 
+                    className={styles.backInput}
                     id='position'
                     type='text'
                     value={position}

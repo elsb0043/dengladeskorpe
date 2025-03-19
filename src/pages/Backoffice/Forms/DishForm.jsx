@@ -90,20 +90,21 @@ const DishForm = ({ isEditMode }) => {
     }    
 
     return (
-        <form onSubmit={handleSubmitDish}>
+        <form onSubmit={handleSubmitDish} className={styles.form}>
             <h2>{isEditMode ? "Opdater ret" : "Tilføj ret"}</h2>
 
             {/* Billedeinput */}
             <div>
                 <label htmlFor="image">Vælg billede (valgfrit):</label>
                 {image && <img className={styles.previewImage} src={image} />}
-                <input id="image" type="file" onChange={handleImageChange} />
+                <input className={styles.backInput} id="image" type="file" onChange={handleImageChange} />
             </div>
 
             {/* Input til titel */}
             <div>
                 <label htmlFor="title">Titel:</label>
                 <input
+                    className={styles.backInput}
                     id="title"
                     type="text"
                     value={title}
@@ -132,6 +133,7 @@ const DishForm = ({ isEditMode }) => {
             <div>
                 <label htmlFor="normalPrice">Almindelig pris:</label>
                 <input
+                    className={styles.backInput}
                     id="normalPrice"
                     type="number"
                     value={normalPrice}
@@ -156,6 +158,7 @@ const DishForm = ({ isEditMode }) => {
             <div>
                 <label htmlFor="ingredients">Ingredienser:</label>
                 <textarea
+                    className={styles.backTextarea}
                     id="ingredients"
                     value={ingredients}
                     onChange={(e) => setIngredients(e.target.value)}

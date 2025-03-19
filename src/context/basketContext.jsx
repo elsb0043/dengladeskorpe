@@ -21,8 +21,8 @@ export const BasketProvider = ({ children }) => {
     }, [basket]) // Kører kun, når basket ændres
 
     // Funktion til at tilføje et produkt til kurven
-    const addToBasket = (product) => {
-        setBasket((prev) => [...prev, product]) // Tilføjer produktet til den eksisterende liste
+    const addToBasket = (dish) => {
+        setBasket((prev) => [...prev, dish]) // Tilføjer produktet til den eksisterende liste
     }
 
     // Funktion til at fjerne et produkt fra kurven baseret på index

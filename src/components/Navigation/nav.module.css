@@ -98,14 +98,15 @@
         display: flex;
     }
 }
-  
+
+
 /* Desktop */
 @media (min-width: 768px) {
     .navBar {
         height: 7rem;
 
         .navLogo {
-            width: 6rem;
+            width: 8rem;
             margin-left: 4rem;
         }
         
@@ -127,6 +128,10 @@
                 display: flex;
                 justify-content: right;
                 align-items: end;
+    
+                div {
+                    margin: 0 2.5rem 1rem 0;
+                }
             }
         }
 
@@ -142,7 +147,7 @@
             margin-top: 0;
             
             a {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
         }
     }

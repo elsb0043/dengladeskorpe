@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react"
 import { useAuthContext } from "../context/useAuthContext"
 
-const useFetchDishes = (setFilteredDishes) => {
+const useFetchDishes = () => {
     const [dishes, setDishes] = useState([])
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [filteredDishes, setFilteredDishes] = useState(false)
     const { token } = useAuthContext()
 
     // HENT ALLE DISHES 
@@ -33,7 +34,7 @@ const useFetchDishes = (setFilteredDishes) => {
         } finally {
             setIsLoading(false)
         }
-    }, [setFilteredDishes])
+    }, [])
 
 
     // OPRET DISHES
@@ -125,13 +126,11 @@ const useFetchDishes = (setFilteredDishes) => {
 
     const refetch = useCallback(() => {
         fetchDishes()
-        setFilteredDishes()
     }, [fetchDishes])
 
 
     useEffect(() => {
         fetchDishes()
-        setFilteredDishes()
     }, [fetchDishes])
 
     return { 
@@ -139,6 +138,7 @@ const useFetchDishes = (setFilteredDishes) => {
         setDishes,
         fetchDishes,
         fetchDishById,
+        setFilteredDishes,
         createDish,
         updateDish,
         deleteDish,

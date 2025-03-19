@@ -1,3 +1,4 @@
+/* Mobile-first */
 .dishes {
     display: flex;
     justify-content: center;
@@ -11,7 +12,7 @@
         font-weight: 300;
         font-family: "Just Another Hand", sans-serif;
         text-shadow: 2px 3px 3px #b9b9b9;
-        margin-bottom: 3rem;
+        margin: 5rem 0 3rem 0;
     }
 
     .filterButtons {
@@ -20,11 +21,48 @@
         width: 100vw;
         display: flex;
         gap: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 100;
+            z-index: 101;
+            font-family: "Just Another Hand", sans-serif;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
     }
 
     .dishCard {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        list-style: none;
+        width: 100%; 
+
+        ul {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            list-style: none;
+            margin: 3rem;
+        }
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+    .dishes {
+        h2 {
+            font-size: 5rem;
+        }
+
+        .dishCard {
+            ul {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
     }
 }

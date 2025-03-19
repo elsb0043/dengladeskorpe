@@ -70,7 +70,7 @@
     .team {
         .teamText {
             h2 {
-                font-size: 4rem;
+                font-size: 5rem;
             }
     
             h3 {
@@ -78,16 +78,13 @@
             }
     
             p {
-                font-size: 1.6rem;
-                max-width: 85rem;
-                line-height: 2.4;
+                max-width: 70rem;
             }
         }
     
         .teamCards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            place-content: center center;
+            grid-template-columns: repeat(4, 1fr);
         }
     }  
 }

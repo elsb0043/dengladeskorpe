@@ -1,0 +1,212 @@
+/* Mobile-first */
+.orderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 3rem 0 3rem 0;
+
+    .orderContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 3rem;
+
+        .successMessage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .orderContentText {
+            text-align: center;
+            margin: 5rem 0 3rem 0;
+
+            h2 {
+                font-size: 4rem;
+                font-weight: 300;
+                font-family: "Just Another Hand", sans-serif;
+                text-shadow: 2px 3px 3px #b9b9b9;
+                margin-bottom: 3rem;
+            }
+        }
+        
+        .orderFormContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .orderForm {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: #F6F0EE;
+                width: 100vw;
+                padding: 4rem 0 4rem 0;
+                box-shadow: 0 4px 10px #7a7a7a;
+                margin-bottom: 5rem;
+
+                ul {
+                    text-decoration: none;
+                    list-style-type: none;
+
+                    .formContent {
+                        display: flex;
+                        justify-content: left;
+                        align-items: start;
+                            
+                        .formContentOrder {
+                            display: flex;
+                            justify-content: center;
+                            align-items: start;
+                            flex-direction: column;
+
+                            img {
+                                height: 8rem;
+                                width: 8rem;
+                            }
+    
+                            li {
+                                font-weight: 700;
+                            }
+                        }
+    
+                        .formContentRemove {
+                            margin-left: 6rem;
+                            cursor: pointer;
+
+                            div {
+                                font-size: 1.5rem;
+                                font-weight: 700;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+
+                .orderDetails {
+                    display: flex;
+                    justify-content: right;
+                    align-items: center;
+
+                    .detail {
+                        margin-right: 2rem;
+                    }
+                }
+            }
+
+            .orderPrice {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #F6F0EE;
+                width: 100vw;
+                padding: 4rem 0 4rem 0;
+                box-shadow: 0 4px 10px #7a7a7a;
+                margin-bottom: 4rem;
+
+                .price {
+                    margin-right: 2rem;
+                }
+            }
+
+            .formIAlt {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 4rem;
+
+                .alt {
+                    margin-right: 2rem;
+                }
+            }
+
+            .orderComment {
+                padding: 1rem 0 8rem 1rem;
+                width: 80vw;
+                margin: 1rem;
+                outline: none;
+                border: #000 1px solid;
+                background-color: transparent;
+                resize: none;
+                font-family: "Kurale", serif;
+                box-shadow: 5px 5px 7px 1px #c8c8c8;
+                margin-bottom: 3rem;
+            }
+        }
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+    .orderContainer {
+        .orderContent {
+            .successMessage {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+    
+            .orderContentText {
+                h2 {
+                    font-size: 5rem;
+                }
+            }
+            
+            .orderFormContainer {
+                .orderForm {
+                    width: 50vw;
+    
+                    ul {
+                        .formContent {            
+                            .formContentOrder {
+                                img {
+                                    height: 8rem;
+                                    width: 8rem;
+                                }
+        
+                                li {
+                                    font-weight: 700;
+                                }
+                            }
+        
+                            .formContentRemove {
+                                margin-left: 6rem;
+                                cursor: pointer;
+    
+                                div {
+                                    font-size: 1.5rem;
+                                    font-weight: 700;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                .orderPrice {
+                    width: 50vw;
+    
+                    .price {
+                        margin-right: 2rem;
+                    }
+                }
+    
+                .orderComment {
+                    width: 45vw;
+                }
+            }
+        }
+    }
+}

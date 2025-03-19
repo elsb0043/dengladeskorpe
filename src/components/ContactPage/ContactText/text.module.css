@@ -25,4 +25,10 @@
 
 
 /* Desktop */
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    .text {
+        h2 {
+            font-size: 5rem;
+        }
+    }
+}

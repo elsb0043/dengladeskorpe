@@ -16,6 +16,7 @@ function Login() {
                 
                 {/* Input-felt til email */}
                 <input 
+                    className={styles.loginInput}
                     type="email" 
                     onChange={(e) => setEmail(e.target.value)} // Opdaterer email-state i useAuth
                     required 
@@ -24,6 +25,7 @@ function Login() {
                 
                 {/* Input-felt til kodeord */}
                 <input 
+                    className={styles.loginInput}
                     type="password" 
                     onChange={(e) => setPassword(e.target.value)} // Opdaterer password-state i useAuth
                     placeholder='Password' 

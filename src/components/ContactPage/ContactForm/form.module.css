@@ -53,11 +53,19 @@
 
 /* Desktop */
 @media (min-width: 768px) {
-    .formContainer {
-        margin: 2rem;
+    .formContent {
+        .successMsg {
+            height: 100vh;
+        }
     
-        .formContent {
-            width: 40vw;
+        form {
+            .name, .topic {
+                width: 40vw;
+            }
+    
+            textarea {
+                width: 40vw;
+            }
         }
     }
 }

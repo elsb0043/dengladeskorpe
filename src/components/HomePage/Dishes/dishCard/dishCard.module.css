@@ -8,9 +8,37 @@
     img {
       height: 10rem;
       width: 10rem;
+      position: relative;
     }
 
-    h3 {
-      font-size: 2rem;
+    p {
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 100;
+      position: absolute;
+      z-index: 101;
+      font-family: "Just Another Hand", sans-serif;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+  .dishCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    img {
+      height: 20rem;
+      width: 20rem;
+    }
+
+    p {
+      font-size: 3.5rem;
+    }
+  }
 }

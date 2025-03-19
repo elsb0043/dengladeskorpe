@@ -26,25 +26,12 @@
 /* Desktop */
 @media (min-width: 768px) {
     .welcome {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        flex-wrap: wrap;
-        padding: 5rem;
-    
         h2 {
-            font-size: 4rem;
-            font-weight: 300;
-            font-family: "Just Another Hand", sans-serif;
-            text-shadow: 2px 4px 6px #969696;
-            margin-bottom: 3rem;
+            font-size: 5rem;
         }
     
         p {
-            text-align: center;
-            line-height: 1.8;
-            font-size: 1.5rem;
+            max-width: 70rem;
         }
     }
 }

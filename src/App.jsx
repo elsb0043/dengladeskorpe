@@ -36,7 +36,7 @@ function App() {
       element: <HomePage />
     },
     { 
-      path: "/dishes/:id",
+      path: "/dish/:id",
       element: <SingleviewDish />
     },
     { 

@@ -1,3 +1,4 @@
+/* Mobile-first */
 /* BUTTON 1 */
 .button {
   width: 80vw;
@@ -77,4 +78,13 @@
 .orangeButton:hover {
   background-color: #7d5737;
   transition: 0.4s ease-in-out;
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+  /* BUTTON 1 */
+  .button {
+    width: 40vw;
+  }
 }

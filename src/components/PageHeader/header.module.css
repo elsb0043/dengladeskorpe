@@ -1,3 +1,4 @@
+/* Mobile-first */
 .header {
     display: flex;
     justify-content: center;
@@ -15,5 +16,28 @@
         font-family: "Just Another Hand", sans-serif;
         text-transform: uppercase;
         font-weight: 100;
+        margin: 0.6rem;
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+    .header {
+        h3, h1, h2 {
+            margin: 2rem;
+        }
+
+        h3 {
+            font-size: 3rem;
+        }
+
+        h1 {
+            font-size: 6rem;
+        }
+
+        h2 {
+            font-size: 4rem;
+        }
     }
 }
