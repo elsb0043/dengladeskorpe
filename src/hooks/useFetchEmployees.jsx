@@ -35,7 +35,7 @@ const useFetchEmployees = () => {
                 body: formData,
             })
             if (!response.ok) {
-                throw new Error("Fejl ved oprettelse af hold") 
+                throw new Error("Fejl ved oprettelse af personale") 
             }
 
             const result = await response.json()
@@ -58,7 +58,7 @@ const useFetchEmployees = () => {
                 body: formData,
             })
             if (!response.ok) {
-                throw new Error("Fejl ved opdatering af hold")
+                throw new Error("Fejl ved opdatering af personale")
             }
             const result = await response.json()
             return result

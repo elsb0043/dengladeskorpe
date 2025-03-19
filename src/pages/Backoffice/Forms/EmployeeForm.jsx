@@ -6,7 +6,7 @@ import Button2 from "../../../components/Button/Button2"
 
 const EmployeesForm = ({ isEditMode }) => {
     const [name, setName] = useState("")
-    const [text, setText] = useState("")
+    const [position, setPosition] = useState("")
     const [image, setImage] = useState(null)
     const [selectedFile, setSelectedFile] = useState(null)
     const { refetch } = useOutletContext() 
@@ -51,7 +51,7 @@ const EmployeesForm = ({ isEditMode }) => {
 
         const employeeData = new FormData()
         employeeData.append("name", name)
-        employeeData.append("text", text)
+        employeeData.append("position", position)
 
         // Tilføjer billedet hvis det er valgt
         if (selectedFile) {
@@ -68,7 +68,7 @@ const EmployeesForm = ({ isEditMode }) => {
             }
 
             console.log (
-                isEditMode ? "medarbejder  er opdateret" : "medarbejder  er oprettet", 
+                isEditMode ? "Medarbejder er opdateret" : "Medarbejder er oprettet", 
                 response
             )
 
@@ -100,12 +100,12 @@ const EmployeesForm = ({ isEditMode }) => {
                 />
             </div>
             <div>
-                <label htmlFor='text'>Job:</label>
+                <label htmlFor='position'>Job:</label>
                 <input
-                    id='text'
+                    id='position'
                     type='text'
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    value={position}
+                    onChange={(e) => setPosition(e.target.value)}
                     required
                 />
             </div>

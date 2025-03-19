@@ -4,32 +4,29 @@ import DishCard from "./dishCard/DishCard"
 import styles from './dishes.module.css'
 
 function Dishes() {
-    const { dishes, pizzas, halfbakedPizzas, durumRolls, error, isLoading } = useFetchDishes()
-    const [filteredDishes, setFilteredDishes] = useState([]) // Filtrerede retter baseret på kategori
-    const [activeFilter, setActiveFilter] = useState("All") // Aktiv kategori
-    const [isDropdownVisible, setIsDropdownVisible] = useState(false) // Kontrollerer synligheden af retterne
+    const { pizzas, halfbakedPizzas, durumRolls, error, isLoading } = useFetchDishes()
+    const [filteredDishes, setFilteredDishes] = useState([])
+    const [activeFilter, setActiveFilter] = useState("Pizzas")
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false)
 
-    // Filtrerer retterne baseret på kategori (Pizzaer, halvbagte pizzaer, durum ruller)
+    // Filter baseret på dishId eller _id
     const filters = {
         Pizzas: pizzas,
         HalfbakedPizzas: halfbakedPizzas,
         DurumRolls: durumRolls,
     }
 
-    // Håndterer kategori knap klik (filtrerer retter)
-    const handleFilterChange = (filter) => {
-        setActiveFilter(filter)
-        setFilteredDishes(filters[filter] || []) // Filtrerer baseret på den valgte kategori
-        setIsDropdownVisible(true) // Vis dropdown med retter
+    // Håndter filter skift ved brug af dishId
+    const handleFilterChange = (dishId) => {
+        setActiveFilter(dishId)
+        setFilteredDishes(filters[dishId] || [])
+        setIsDropdownVisible(true)
     }
 
-    // Default: Vis pizzaer når komponentet først bliver loadet
+    // Default filter til pizzaer
     useEffect(() => {
         setFilteredDishes(pizzas)
     }, [pizzas])
-
-    // Vis retter baseret på filteredDishes, hvis den er tilgængelig
-    const dishesArray = filteredDishes?.length > 0 ? filteredDishes : []
 
     return (
         <div className={styles.dishes}>
@@ -40,7 +37,6 @@ function Dishes() {
             ) : (
                 <section>
                     <div className={styles.filterButtons}>
-                        {/* Kategori knapper */}
                         <button
                             className={activeFilter === "Pizzas" ? styles.active : ""}
                             onClick={() => handleFilterChange("Pizzas")}
@@ -63,12 +59,11 @@ function Dishes() {
 
                     {error && <p>Kunne ikke hente retterne. Fejl: {error}</p>}
 
-                    {/* Kun vis retter når dropdown er synlig */}
                     {isDropdownVisible && (
                         <div className={styles.dishCard}>
-                            {dishesArray.length > 0 ? (
+                            {filteredDishes.length > 0 ? (
                                 <ul>
-                                    {dishesArray.map(dish => (
+                                    {filteredDishes.map(dish => (
                                         <li key={dish._id}>
                                             <DishCard dish={dish} />
                                         </li>

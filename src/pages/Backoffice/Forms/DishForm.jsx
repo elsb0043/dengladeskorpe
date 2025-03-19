@@ -50,18 +50,22 @@ const DishForm = ({ isEditMode }) => {
 
     const handleSubmitDish = async (event) => {
         event.preventDefault()
-
+    
         const dishData = new FormData()
         dishData.append("title", title)
         dishData.append("category", category)
-        dishData.append("normalPrice", normalPrice)
-        dishData.append("familyPrice", familyPrice)
         dishData.append("ingredients", ingredients)
 
+        const price = {
+            normal: parseFloat(normalPrice),
+            family: parseFloat(familyPrice)
+        }
+        dishData.append("price", JSON.stringify(price)) // JSON-stringify objektet
+    
         if (selectedFile) {
             dishData.append("file", selectedFile)
         }
-
+    
         try {
             let response
             if (isEditMode && id) {
@@ -70,20 +74,20 @@ const DishForm = ({ isEditMode }) => {
             } else {
                 response = await createDish(dishData)
             }
-
+    
             console.log(
                 isEditMode ? "Ret er opdateret" : "Ret er oprettet",
                 response
             )
-
+    
             if (response) {
                 await refetch()
-                navigate("/backoffice/dishes")
+                navigate("/backoffice/backofficedishes")
             }
         } catch (error) {
             console.error("Fejl ved håndtering af ret:", error)
         }
-    }
+    }    
 
     return (
         <form onSubmit={handleSubmitDish}>

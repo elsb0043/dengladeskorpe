@@ -5,7 +5,7 @@ const useFetchDishes = () => {
     const [dishes, setDishes] = useState([])
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-    
+
     const { token } = useAuthContext()
 
     // HENT ALLE RETTER
@@ -39,129 +39,39 @@ const useFetchDishes = () => {
         }
     }, [])
 
-    // OPRET RET
-    const createDish = async (formData) => {
-        try {
-            const response = await fetch("http://localhost:3042/dish", {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            })
-
-            if (!response.ok) {
-                throw new Error("Fejl ved oprettelse af ret")
-            }
-
-            const result = await response.json()
-            return result
-        } catch (error) {
-            console.error("Fejl ved oprettelse:", error)
-            throw error
-        }
-    }
-
-    // OPDATER RET
-    const updateDish = async (formData) => {
-        try {
-            const response = await fetch("http://localhost:3042/dish", {
-                method: "PUT",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            })
-
-            if (!response.ok) {
-                throw new Error("Fejl ved opdatering af ret")
-            }
-
-            const result = await response.json()
-            return result
-        } catch (error) {
-            console.error("Fejl ved opdatering:", error)
-            throw error
-        }
-    }
-
-    // SLET RET
-    const deleteDish = async (dishId) => {
-        try {
-            await fetch(`http://localhost:3042/dish/${dishId}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-
-            setDishes((prevDishes) =>
-                prevDishes.filter((dish) => dish._id !== dishId)
-            )
-        } catch (error) {
-            console.error("Fejl ved sletning:", error)
-            setError(error.message)
-        }
-    }
-
-    // HENT RET BASERET PÅ ID
-    const fetchDishById = async (id) => {
-        setError(null)
-        setIsLoading(true)
-        try {
-            const response = await fetch(`http://localhost:3042/dish/${id}`)
-            if (!response.ok) {
-                const errorText = await response.text()
-                throw new Error(`Failed to fetch dish: ${errorText}`)
-            }
-
-            const dish = await response.json()
-            return dish.data[0]
-        } catch (error) {
-            setError(error.message)
-            console.error("Error fetching dish:", error)
-        } finally {
-            setIsLoading(false)
-        }
-    }
-
+    // Filter state
     const [pizzas, setPizzas] = useState([])
     const [halfbakedPizzas, setHalfbakedPizzas] = useState([])
     const [durumRolls, setDurumRolls] = useState([])
 
-    const filterDishes = () => {
-        setPizzas(dishes.filter(dish => dish.mealType?.includes("Pizzas")))
-        setHalfbakedPizzas(dishes.filter(dish => dish.mealType?.includes("HalfbakedPizzas")))
-        setDurumRolls(dishes.filter(dish => dish.mealType?.includes("DurumRolls")))
-    }
-        
+    // Filter funktion baseret på mealType eller ID
+    const filterDishes = useCallback(() => {
+        if (dishes.length) {
+            setPizzas(dishes.filter(dish => dish.mealType?.includes("Pizzas") || dish._id === "Pizzas"))
+            setHalfbakedPizzas(dishes.filter(dish => dish.mealType?.includes("HalfbakedPizzas") || dish._id === "HalfbakedPizzas"))
+            setDurumRolls(dishes.filter(dish => dish.mealType?.includes("DurumRolls") || dish._id === "DurumRolls"))
+        }
+    }, [dishes])
 
-    // Memoiseret funktion til at genhente retter
-    const refetch = useCallback(() => {
+    // Trigger filtrering når dishes er blevet fetchet
+    useEffect(() => {
         fetchDishes()
     }, [fetchDishes])
 
-
     useEffect(() => {
-        fetchDishes()
-    }, [])
+        filterDishes()
+    }, [dishes, filterDishes])
 
     return {
         dishes,
         setDishes,
-        fetchDishes,
-        fetchDishById,
-        deleteDish,
-        createDish,
-        updateDish,
         isLoading,
-        refetch,
         error,
-        filterDishes,
         pizzas,
         halfbakedPizzas,
-        durumRolls
-    }    
+        durumRolls,
+        fetchDishes
+    }
 }
 
 export { useFetchDishes }

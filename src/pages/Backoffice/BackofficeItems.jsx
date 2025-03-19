@@ -13,12 +13,12 @@ const BackofficeDishes = () => {
 
   // Funktion til at navigere til siden for at tilføje en ret
   const handleAddDish = () => {
-    navigate("/backoffice/dishes/add")
+    navigate("/backoffice/backofficedishes/add")
   }
 
   // Funktion til at navigere til siden for at redigere en ret
   const handleEdit = (dishId) => {
-    navigate(`/backoffice/dishes/edit/${dishId}`)
+    navigate(`/backoffice/backofficedishes/edit/${dishId}`)
   }
 
   // Funktion til at vise en bekræftelsesdialog ved sletning af en ret
@@ -100,6 +100,11 @@ const BackofficeEmployees = () => {
   // Funktion til at navigere til siden for at tilføje en medarbejder
   const handleAddEmployee = () => {
     navigate("/backoffice/employees/add")
+  }
+
+  // Funktion til at navigere til siden for at redigere en ret
+  const handleEdit = (employeeId) => {
+    navigate(`/backoffice/employees/edit/${employeeId}`)
   }
 
   // Funktion til at vise en bekræftelsesdialog ved sletning af en medarbejder
