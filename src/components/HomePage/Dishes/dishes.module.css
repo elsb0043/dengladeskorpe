@@ -24,6 +24,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 3rem;
 
         button {
             background: transparent;
@@ -57,13 +58,24 @@
 /* Desktop */
 @media (min-width: 768px) {
     .dishes {
+
+        .filterButtons {
+            gap: 5rem;
+
+            button {
+                font-size: 4rem;
+                height: 15rem;
+                width: 15rem;
+            }
+        }
+
         h2 {
             font-size: 5rem;
         }
 
         .dishCard {
             ul {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     }

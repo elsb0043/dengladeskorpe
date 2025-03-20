@@ -43,40 +43,19 @@ footer {
 
 /* Desktop */
 @media (min-width: 768px) {
-    .footer {
-        height: 115vh;
-
+    footer {
         .footerContent {
-            justify-content: start;
-            align-items: start;
-
-            .footerInfo {
-                .footerLogo {
-                    width: 8rem;
-                }
-
-                p {
-                    line-height: 2;
-                    max-width: 30rem;
-                }
+            .footerLogo {
+                width: 13rem;
             }
-
+    
             .footerContact {
                 .footerContactInfo {
-                    justify-content: left;
-                    align-items: start;
-
                     p {
-                        max-width: 50%;
-                        line-height: 1.8;
+                        font-size: 2rem;
                     }
                 }
             }
         }
-    }
-
-    .allRightsReserved {
-        max-width: 20%;
-        margin-left: 60rem;
     }
 }
