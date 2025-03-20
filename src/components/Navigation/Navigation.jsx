@@ -3,7 +3,6 @@ import { Link, NavLink } from 'react-router-dom'
 import { GiHamburgerMenu } from "react-icons/gi"
 import { RxCross2 } from "react-icons/rx"
 import { useBasket } from '../../context/basketContext'
-import { icons } from '../../services/Icons'
 import styles from './nav.module.css'
 
 function Navigation() {

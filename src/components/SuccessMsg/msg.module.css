@@ -1,0 +1,40 @@
+.successMsgContainer {
+    background-image: url(/assets/successMsgBg.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .successMsgContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        background-color: #ffffff9c;
+        padding: 6rem 0 6rem 0;
+        z-index: 1000;
+        margin-top: 45rem;
+        position: absolute;
+
+        h3 {
+            max-width: 50%;
+            text-align: center;
+        }
+    }
+}
+
+.successMsgContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff93; 
+    z-index: 1;
+}

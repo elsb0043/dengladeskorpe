@@ -4,7 +4,7 @@ footer {
     height: 30vh;
     padding: 3rem;
     flex-wrap: wrap;
-    background-color: rgb(48, 47, 47);
+    background-color: #4A4A4A;
 
     .footerContent {
         display: flex;

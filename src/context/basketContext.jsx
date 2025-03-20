@@ -21,15 +21,13 @@ export const BasketProvider = ({ children }) => {
     }, [basket]) // Kører kun, når basket ændres
 
     // Funktion til at tilføje et produkt til kurven
-    const addToBasket = (dish) => {
-        setBasket((prev) => [...prev, dish]) // Tilføjer produktet til den eksisterende liste
+    const addToBasket = (dish, size, price, toppings) => {
+        setBasket((prev) => [...prev, { ...dish, size, price, toppings }])
     }
 
     // Funktion til at fjerne et produkt fra kurven baseret på index
     const removeFromBasket = (index) => {
         setBasket((prev) => prev.filter((_, i) => i !== index))
-        // _ bruges, fordi værdien ikke er nødvendig (vi bruger kun index)
-        // Fjerner elementet på den angivne index-position
     }
 
     // Funktion til at rydde hele kurven
@@ -46,5 +44,4 @@ export const BasketProvider = ({ children }) => {
 }
 
 // Custom hook til at tilgå BasketContext
-// Gør det nemt at hente kurvens state og funktioner fra hvor som helst i komponenttræet
 export const useBasket = () => useContext(BasketContext)

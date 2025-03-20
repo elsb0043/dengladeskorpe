@@ -1,0 +1,70 @@
+/* Mobile-first */
+.singleViewContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5rem;
+
+    img {
+        margin-bottom: 3rem;
+    }
+
+    .singleViewContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #F6F0EE;
+        width: 100vw;
+        padding: 4rem 0 4rem 0;
+        height: 40rem;
+
+        h3 {
+            color: #fff;
+            font-size: 4rem;
+            font-weight: 100;
+            z-index: 101;
+            font-family: "Just Another Hand", sans-serif;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            margin-bottom: 3rem;
+        }
+
+        .singleViewIngredients {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; 
+            gap: 3rem;
+        }
+    }
+
+    .singleViewSizeDish {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 3rem 0 3rem 0;
+
+        h3 {
+            font-size: 4rem;
+            font-weight: 300;
+            font-family: "Just Another Hand", sans-serif;
+            text-shadow: 2px 3px 3px #b9b9b9;
+            margin: 3rem 0 2rem 0;
+        }
+
+        .singleViewPrice {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 5rem;
+            font-size: 2.5rem;
+            
+            .price {
+                text-shadow: 2px 3px 3px #b9b9b9;
+            }
+        }
+    }
+}

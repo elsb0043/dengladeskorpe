@@ -1,0 +1,103 @@
+/* Mobile-first */
+.arrow {
+    font-size: 3.5rem;
+    color: #333;
+}
+/* Size */
+.sizeDropdownContainer {
+    position: relative;
+    width: 40rem;
+
+    .sizeDropdown {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        font-family: "Kurale", serif;
+        font-size: 1.8rem;
+        background-color: #F6F0EE;
+        box-shadow: 2px 3px 3px #b9b9b9;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        width: 100%;
+    }
+
+    .sizeDropdownMenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #EDE0DC;
+        box-shadow: 2px 3px 3px #b9b9b9;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 200px;
+        overflow-y: auto;
+
+        li {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-family: "Kurale", serif;
+            font-size: 1.8rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .sizeDropdownMenu li:hover {
+            background-color: #ddd;
+        }
+    }
+}
+
+/* Toppings */
+.topDropdownContainer {
+    position: relative;
+    width: 30rem;
+    margin-top: 3rem;
+    z-index: 1000;
+
+    .topDropdown {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        font-family: "Kurale", serif;
+        font-size: 1.8rem;
+        background-color: #fff;
+        box-shadow: 2px 3px 3px #b9b9b9;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        width: 100%;
+    }
+
+    .topDropdownMenu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #ffffffd6;
+        box-shadow: 2px 3px 3px #b9b9b9;
+        list-style: none;
+        max-height: 25rem;
+        overflow-y: auto;
+        gap: 1.5rem;
+        padding: 2rem;
+
+        li {
+            cursor: pointer;
+            font-family: "Kurale", serif;
+            font-size: 1.8rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .topDropdownMenu li:hover {
+            background-color: #ddd;
+        }
+    }
+}

@@ -1,141 +1,111 @@
-import { useState } from "react"
-import { useFetchDishes } from "../../../hooks/useFetchDishes"
-import Button from "../../Button/Button"
-import styles from "./form.module.css"
+import { useState } from "react" // Import af React's useState hook
+import Button from "../../Button/Button" // Import af genanvendelig Button-komponent
+import styles from "./form.module.css" // Import af CSS-modul til styling
+import SuccessMsg from "../../SuccessMsg/SuccessMsg" // Import af succesmeddelelseskomponent
+import { RxCross2 } from "react-icons/rx" // Import af krydsikon fra react-icons
 
 function ContactForm() {
-    const [formData, setFormData] = useState({ name: "", topic: "", description: "" }) // State til at gemme form data (navn, emne, beskrivelse)
-    const [response, setResponse] = useState(null) // State til at gemme svarmeddelelse, f.eks. succes eller fejl
-    const [errors, setErrors] = useState({}) // State til at gemme fejlbeskeder, som opstår ved validering
-    const [sent, setSent] = useState(false) // State til at holde styr på, om beskeden er sendt
-    const { dishes } = useFetchDishes()
+    // useState hook til at håndtere tilstand i komponenten
+    const [formData, setFormData] = useState({ name: "", topic: "", description: "" }) // Formulardata
+    const [response, setResponse] = useState(null) // Responsmeddelelse efter indsendelse
+    const [errors, setErrors] = useState({}) // Fejlmeddelelser, hvis der er problemer med validering
+    const [sent, setSent] = useState(false) // Håndterer om formularen er sendt
 
-    // Funktion til at validere formularen
+    const closeMsg = () => setSent(false) // Funktion til at lukke succesmeddelelsen
+
+    // Validering af formulardata
     const validate = () => {
-        let newErrors = {}
-
-        // Hvis der er noget galt med de indtastede data (fx et tomt navn eller en ugyldig emne), bliver der lagt en fejlbesked i newErrors-objektet
-        if (!formData.name.trim()) newErrors.name = "Navn er påkrævet" // Tjek om navn er tomt (trim( fjerner ekstra mellemrum før og efter en tekststreng))
-        if (!formData.topic.trim()) newErrors.topic = "Ugyldigt emne" // Tjek om emne er valid
-        if (!formData.description.trim()) newErrors.description = "Beskrivelse er påkrævet" // Tjek om beskrivelse er tom
-
-        return newErrors
+        let newErrors = {} // Objekt til at holde fejl
+        // Validering af de enkelte felter
+        if (!formData.name.trim()) newErrors.name = "Navn er påkrævet"
+        if (!formData.topic.trim()) newErrors.topic = "Ugyldigt emne"
+        if (!formData.description.trim()) newErrors.description = "Beskrivelse er påkrævet"
+        return newErrors // Returnér fejlene
     }
 
-    // Funktion til at håndtere formularens submit
+    // Funktion til at håndtere formularindsendelse
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault() // Forhindre standardformularindsendelse (reload af siden)
 
-        // Validér formularen, og hvis der er fejl, opdater fejlbeskederne
-        const validationErrors = validate()
-
-        // Object.keys() returnere en liste med nøglerne: ["name", "emne"]
-        if (Object.keys(validationErrors).length > 0) { // Object en måde at gemme data i "nøgleværdi"-par, fx "name" og "John", og keys bruges til at hente alle nøglerne fra et objekt som en liste (array), fx { name: "John", topic: gmail.com }
-            setErrors(validationErrors)
-            return
+        const validationErrors = validate() // Valider formularen
+        if (Object.keys(validationErrors).length > 0) { // Hvis der er valideringsfejl
+            setErrors(validationErrors) // Sæt fejlmeddelelser i state
+            return // Stop indsendelse af formularen
         }
-        // Hvis der ikke er fejl, nulstilles fejlbeskederne
-        setErrors({})
+
+        setErrors({}) // Ryd fejlloggen, hvis formularen er korrekt
 
         try {
-            // Promise hjælper dig med at håndtere tidspunkter, hvor du skal vente på noget (som f.eks. en forsinkelse eller en serveranmodning)
+            // Simulering af en forsinkelse (kan være API-anmodning i en virkelig applikation)
             await new Promise((resolve) => setTimeout(resolve, 500))
 
             const { name } = formData
-
-            // Sætter succesbeskeden, som vises efter indsendelse
-            setResponse(`Hej ${name}! Din besked er blevet sendt.`)
-            setSent(true)
+            // Sæt succesmeddelelse
+            setResponse(`Tak for din besked ${name}! Vi vender tilbage hurtigst muligt.`)
+            setSent(true) // Formularen er sendt
         } catch {
-            // Hvis der opstår en fejl, vises en fejlbesked
+            // Hvis der opstår en fejl under indsendelse
             setResponse("Der opstod en fejl. Prøv venligst igen.")
         }
 
-        // Gemmer dataene i localStorage
+        // Gem formulardata i localStorage (kan bruges til at vise tidligere indsendte beskeder)
         const { name, topic, description } = formData
-        const contactData = {
-            name,
-            topic,
-            description,
-            date: new Date().toISOString()
-        }
+        const contactData = { name, topic, description, date: new Date().toISOString() } // Kontaktdata
+        const contactHistory = JSON.parse(localStorage.getItem('contactHistory')) || [] // Hent eksisterende kontaktdata
+        localStorage.setItem('contactHistory', JSON.stringify([...contactHistory, contactData])) // Gem ny kontaktdata
 
-        // Henter eksisterende kontaktformularer fra localStorage, eller en tom liste, hvis der ikke er nogen
-        const contactFormular = JSON.parse(localStorage.getItem('contactHistory')) || []
-
-        // Gemmer den nye kontaktformular i localStorage
-        localStorage.setItem('contactHistory', JSON.stringify([...contactFormular, contactData]))
-
-        // Nulstiller formularens data, så den er klar til en ny indsendelse
+        // Reset formularen
         setFormData({ name: "", topic: "", description: "" })
-    }
-
-    const getCategoryBackground = (category) => {
-        // Find the first dish that matches the category
-        const dish = dishes.find(dish => dish.category === category)
-        return dish ? `url(${dish.image})` : null // Assuming dish.image is the URL
     }
 
     return (
         <div className={styles.formContent}>
             {sent ? (
-                // Hvis beskeden er sendt, vis en succesbesked
-                <div 
-                    className={styles.successMsg}
-                    style={{
-                        backgroundImage: getCategoryBackground(category),
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                >
-                    <h3>{response}</h3>
+                // Hvis formularen er sendt, vis succesmeddelelsen
+                <div className={styles.successWrapper}>
+                    <SuccessMsg message={response} onClick={closeMsg} /> {/* Vis succesbesked */}
+                    <div className={styles.closeButton} onClick={closeMsg}>
+                        <RxCross2 size={60} /> {/* Luk succesmeddelelsen med et krydsikon */}
+                    </div>
                 </div>
             ) : (
-                <>
-                    <form onSubmit={handleSubmit}>
-                        {/* Input for navn */}
-                        <label>Navn</label>
-                        <input
-                            className={styles.name}
-                            required
-                            name="name"
-                            type="text"
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        />
-                        {/* Vis fejlbesked, hvis der er en */}
-                        {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+                // Hvis formularen ikke er sendt, vis formularen
+                <form onSubmit={handleSubmit}>
+                    {/* Navn Input */}
+                    <label>Navn</label>
+                    <input
+                        className={styles.name}
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })} // Opdater formData ved ændring af navn
+                    />
+                    {errors.name && <p style={{ color: "red" }}>{errors.name}</p>} {/* Vis fejlmeddelelse, hvis der er en fejl i navn */}
 
-                        {/* Input for topic */}
-                        <label>Emne</label>
-                        <input
-                            className={styles.topic}
-                            required
-                            name="topic"
-                            type="text"
-                            value={formData.topic}
-                            onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-                        />
-                        {/* Vis fejlbesked, hvis der er en */}
-                        {errors.topic && <p style={{ color: "red" }}>{errors.topic}</p>}
+                    {/* Emne Input */}
+                    <label>Emne</label>
+                    <input
+                        className={styles.topic}
+                        name="topic"
+                        type="text"
+                        value={formData.topic}
+                        onChange={(e) => setFormData({ ...formData, topic: e.target.value })} // Opdater formData ved ændring af emne
+                    />
+                    {errors.topic && <p style={{ color: "red" }}>{errors.topic}</p>} {/* Vis fejlmeddelelse, hvis der er en fejl i emne */}
 
-                        {/* Textarea for beskrivelse */}
-                        <label>Beskrivelse</label>
-                        <textarea
-                            required
-                            name="description"
-                            className={styles.textarea}
-                            value={formData.description}
-                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        />
-                        {/* Vis fejlbesked, hvis der er en */}
-                        {errors.description && <p style={{ color: "red" }}>{errors.description}</p>}
+                    {/* Beskrivelse Input */}
+                    <label>Beskrivelse</label>
+                    <textarea
+                        className={styles.textarea}
+                        name="description"
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })} // Opdater formData ved ændring af beskrivelse
+                    />
+                    {errors.description && <p style={{ color: "red" }}>{errors.description}</p>} {/* Vis fejlmeddelelse, hvis der er en fejl i beskrivelse */}
 
-                        {/* Send-knap */}
-                        <Button text="Send" type="type" />
-                    </form>
-                </>
+                    {/* Submit Button */}
+                    <Button text="Send" type="submit" /> {/* Send formularen */}
+                </form>
             )}
         </div>
     )

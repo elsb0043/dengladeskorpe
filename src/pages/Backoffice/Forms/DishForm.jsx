@@ -5,24 +5,25 @@ import { useFetchDishes } from "../../../hooks/useFetchDishes"
 import Button2 from "../../../components/Button/Button2"
 
 const DishForm = ({ isEditMode }) => {
-    const [title, setTitle] = useState("")
-    const [category, setCategory] = useState("") 
-    const [normalPrice, setNormalPrice] = useState("")
-    const [familyPrice, setFamilyPrice] = useState("")
-    const [image, setImage] = useState(null)
-    const [selectedFile, setSelectedFile] = useState(null)
-    const [ingredients, setIngredients] = useState("")
+    const [title, setTitle] = useState("") // State til titel
+    const [category, setCategory] = useState("") // State til kategori
+    const [normalPrice, setNormalPrice] = useState("") // State til almindelig pris
+    const [familyPrice, setFamilyPrice] = useState("") // State til familie pris
+    const [image, setImage] = useState(null) // State til billede
+    const [selectedFile, setSelectedFile] = useState(null) // State til valgt billede
+    const [ingredients, setIngredients] = useState("") // State til ingredienser
 
-    const { refetch } = useOutletContext()
-    const navigate = useNavigate()
-    const { id } = useParams()
-    const { createDish, fetchDishById, updateDish } = useFetchDishes()
+    const { refetch } = useOutletContext() // Henter refetch funktionen fra Outlet context
+    const navigate = useNavigate() // Bruges til at navigere efter submit
+    const { id } = useParams() // Henter id fra URL (bruges i edit mode)
+    const { createDish, fetchDishById, updateDish } = useFetchDishes() // Henter funktioner til at hente og opdatere retter
 
+    // useEffect hook til at hente eksisterende data, hvis vi er i redigeringstilstand
     useEffect(() => {
         if (isEditMode && id) {
             const loadDishData = async () => {
                 try {
-                    const response = await fetchDishById(id)
+                    const response = await fetchDishById(id) // Hent retten ved id
                     if (response) {
                         setTitle(response.title)
                         setCategory(response.category)
@@ -35,69 +36,73 @@ const DishForm = ({ isEditMode }) => {
                     console.error("Error fetching dish:", error)
                 }
             }
-            loadDishData()
+            loadDishData() // Hent retten
         }
-    }, [isEditMode, id, fetchDishById])
+    }, [isEditMode, id, fetchDishById]) // Afhængigheder for useEffect: isEditMode, id, fetchDishById
 
+    // Håndter billede upload
     const handleImageChange = (event) => {
         const file = event.target.files[0]
         if (file) {
-            setSelectedFile(file)
-            const objUrl = window.URL.createObjectURL(file)
-            setImage(objUrl)
+            setSelectedFile(file) // Sæt den valgte fil i state
+            const objUrl = window.URL.createObjectURL(file) // Opret en objekt-URL for billedet
+            setImage(objUrl) // Sæt URL'en som billede
         }
     }
 
+    // Håndter submit af formularen
     const handleSubmitDish = async (event) => {
-        event.preventDefault()
-    
-        const dishData = new FormData()
+        event.preventDefault() // Forhindrer default form submit
+
+        const dishData = new FormData() // Opret en FormData objekt til at sende data
         dishData.append("title", title)
         dishData.append("category", category)
         dishData.append("ingredients", ingredients)
 
         const price = {
-            normal: parseFloat(normalPrice),
-            family: parseFloat(familyPrice)
+            normal: parseFloat(normalPrice), // Konverter pris til float
+            family: parseFloat(familyPrice) // Konverter familiepris til float
         }
-        dishData.append("price", JSON.stringify(price)) // JSON-stringify objektet
-    
+        dishData.append("price", JSON.stringify(price)) // JSON-stringify objektet og tilføj det til FormData
+
+        // Hvis der er valgt et billede, tilføj det til FormData
         if (selectedFile) {
             dishData.append("file", selectedFile)
         }
-    
+
         try {
             let response
             if (isEditMode && id) {
-                dishData.append("id", id)
-                response = await updateDish(dishData)
+                dishData.append("id", id) // Hvis vi er i redigeringstilstand, tilføj id
+                response = await updateDish(dishData) // Opdater retten
             } else {
-                response = await createDish(dishData)
+                response = await createDish(dishData) // Opret en ny ret
             }
-    
+
             console.log(
                 isEditMode ? "Ret er opdateret" : "Ret er oprettet",
                 response
             )
-    
+
+            // Efter successfuld opdatering/tilføjelse, refetch data og naviger væk
             if (response) {
-                await refetch()
-                navigate("/backoffice/backofficedishes")
+                await refetch() // Refetch data fra parent-komponenten
+                navigate("/backoffice/backofficedishes") // Naviger tilbage til backoffice-siden
             }
         } catch (error) {
-            console.error("Fejl ved håndtering af ret:", error)
+            console.error("Fejl ved håndtering af ret:", error) // Fejl ved oprettelse eller opdatering
         }
-    }    
+    }
 
     return (
         <form onSubmit={handleSubmitDish} className={styles.form}>
-            <h2>{isEditMode ? "Opdater ret" : "Tilføj ret"}</h2>
+            <h2>{isEditMode ? "Opdater ret" : "Tilføj ret"}</h2> {/* Dynamisk heading afhængigt af om vi er i redigeringstilstand */}
 
             {/* Billedeinput */}
             <div>
                 <label htmlFor="image">Vælg billede (valgfrit):</label>
-                {image && <img className={styles.previewImage} src={image} />}
-                <input className={styles.backInput} id="image" type="file" onChange={handleImageChange} />
+                {image && <img className={styles.previewImage} src={image} />} {/* Vis billede, hvis det er valgt */}
+                <input className={styles.backInput} id="image" type="file" onChange={handleImageChange} /> {/* Billede input */}
             </div>
 
             {/* Input til titel */}
@@ -108,7 +113,7 @@ const DishForm = ({ isEditMode }) => {
                     id="title"
                     type="text"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)} // Håndter titel ændring
                     required
                 />
             </div>
@@ -119,7 +124,7 @@ const DishForm = ({ isEditMode }) => {
                 <select
                     id="category"
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={(e) => setCategory(e.target.value)} // Håndter kategori ændring
                     required
                 >
                     <option className={styles.category} value="">Vælg kategori</option>
@@ -137,7 +142,7 @@ const DishForm = ({ isEditMode }) => {
                     id="normalPrice"
                     type="number"
                     value={normalPrice}
-                    onChange={(e) => setNormalPrice(e.target.value)}
+                    onChange={(e) => setNormalPrice(e.target.value)} // Håndter prisændring
                     required
                 />
             </div>
@@ -149,7 +154,7 @@ const DishForm = ({ isEditMode }) => {
                     id="familyPrice"
                     type="number"
                     value={familyPrice}
-                    onChange={(e) => setFamilyPrice(e.target.value)}
+                    onChange={(e) => setFamilyPrice(e.target.value)} // Håndter familie pris ændring
                     required
                 />
             </div>
@@ -161,7 +166,7 @@ const DishForm = ({ isEditMode }) => {
                     className={styles.backTextarea}
                     id="ingredients"
                     value={ingredients}
-                    onChange={(e) => setIngredients(e.target.value)}
+                    onChange={(e) => setIngredients(e.target.value)} // Håndter ingrediensændring
                     required
                 />
             </div>
@@ -169,8 +174,8 @@ const DishForm = ({ isEditMode }) => {
             {/* Knap til at submitte formularen */}
             <Button2
                 type="submit"
-                buttonText={isEditMode ? "Opdater ret" : "Tilføj ret"}
-                background={!isEditMode ? "green" : undefined}
+                buttonText={isEditMode ? "Opdater ret" : "Tilføj ret"} // Dynamisk tekst afhængigt af om vi er i redigeringstilstand
+                background={!isEditMode ? "green" : undefined} // Sæt baggrundsfarve til grøn, hvis vi er i tilføj tilstand
             />
         </form>
     )

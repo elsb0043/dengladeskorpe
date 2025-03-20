@@ -1,3 +1,4 @@
+/* Mobile-first */
 .dishCard {
     display: flex;
     justify-content: center;
@@ -9,6 +10,7 @@
       height: 10rem;
       width: 10rem;
       position: relative;
+      cursor: pointer;
     }
 
     p {
@@ -19,6 +21,7 @@
       z-index: 101;
       font-family: "Just Another Hand", sans-serif;
       text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      cursor: pointer;
     }
 }
 
