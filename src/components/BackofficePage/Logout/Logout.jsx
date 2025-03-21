@@ -1,9 +1,10 @@
 import { useAuthContext } from '../../../context/useAuthContext'
+import { useNavigate } from 'react-router-dom' // Importer useNavigate
 import Button from '../../Button/Button'
 import styles from './logout.module.css'
 
 function Logout() {
-    const { signOut } = useAuthContext()
+    const { signOut } = useAuthContext() // Hent signOut funktion fra context
 
     return (
         <div className={styles.logout}>

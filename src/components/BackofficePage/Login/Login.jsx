@@ -32,7 +32,9 @@ function Login() {
                 />
                 
                 {/* Knap til at sende formularen */}
-                <Button text="Log Ind" type="type" />
+                <div className={styles.loginButton}>
+                    <Button text="Log Ind" type="type" />
+                </div>
             </form>
         </div>
     )

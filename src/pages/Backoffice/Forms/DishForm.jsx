@@ -151,6 +151,7 @@ const DishForm = ({ isEditMode }) => {
             <div>
                 <label htmlFor="familyPrice">Familie pris:</label>
                 <input
+                    className={styles.backInput}
                     id="familyPrice"
                     type="number"
                     value={familyPrice}
@@ -168,6 +169,7 @@ const DishForm = ({ isEditMode }) => {
                     value={ingredients}
                     onChange={(e) => setIngredients(e.target.value)} // Håndter ingrediensændring
                     required
+                    placeholder="Fx Pepperoni, Hvidløg, Salat"
                 />
             </div>
 

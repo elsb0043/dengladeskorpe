@@ -115,7 +115,18 @@ const useFetchDishes = () => {
             }
 
             const dish = await response.json() // Parse JSON svar
-            return dish.data
+
+            return {
+                ...data.data,
+                price: {
+                    normal: data.data.price?.normal || 0,
+                    family: data.data.price?.family || 0,
+                },
+                category: data.data.category || "Unknown",
+                title: data.data.title || "", // Sikrer at title bliver inkluderet
+                ingredients: data.data.ingredients || "" // Sikrer at ingredients bliver inkluderet
+            }
+
         } catch (error) {
             setError(error.message) // Sæt fejl i state
             console.error("Error fetching dish:", error) // Log fejl til konsol
