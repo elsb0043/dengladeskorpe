@@ -32,18 +32,18 @@ function SingleviewDish() {
 
   // useEffect hook til at hente retten baseret på id
   useEffect(() => {
-    const getDish = async () => {
-      if (!id) return
+    const getDish = async () => { // Async funktion, der henter retten via fetchDishById(id)
+      if (!id) return // Hvis (!id) er truthy, så sæt setLocalLoading(true) -> falsy (null, undefined..), så stopper funktionen 
       setLocalLoading(true) 
       try {
-        const fetchedDish = await fetchDishById(id)
+        const fetchedDish = await fetchDishById(id) // Henter retten fra API ved hjælp af id
         if (fetchedDish) {
-          setDish(fetchedDish)
+          setDish(fetchedDish) // Opdaterer state med den hentede ret
           setPrice(fetchedDish.price?.normal || 0) // Sætter default pris til normal størrelse
         }
-      } catch (error) {
+      } catch (error) { // Fanger og logger fejl, hvis hentningen fejler
         console.error("Error fetching dish:", error)
-      } finally {
+      } finally { // Sætter loading-tilstand til false efter hentning (uanset om den lykkes eller fejler)
         setLocalLoading(false)
       }
     }
@@ -53,21 +53,21 @@ function SingleviewDish() {
 
   // useEffect hook til at opdatere prisen, når størrelsen ændres
   useEffect(() => {
-    if (dish && dish.price) {
-      setPrice(dish.price[size] || 0)
+    if (dish && dish.price) { // Tjekker om ret og pris findes
+      setPrice(dish.price[size] || 0) // Sætter prisen baseret på valgt størrelse (size), ellers 0
     }
   }, [size, dish]) // Kører når `size` eller `dish` ændres
 
   // Funktion til at håndtere tilføjelse af retter til kurven
   const handleAddToBasket = () => {
-    if (dish) {
+    if (dish) { // Tjekker om retten findes
       addToBasket(dish, size, price, ingredient) // Tilføj retten til kurven med de valgte parametre
     }
   }
 
   // Funktion til at håndtere ændring af topping
   const handleToppingChange = (topping) => {
-    setSelectedTopping(topping)
+    setSelectedTopping(topping) // Opdaterer valgt topping i state
   }
 
   // Hvis retten ikke er hentet eller der opstår en fejl, vis en meddelelse
