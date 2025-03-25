@@ -20,7 +20,7 @@ function Dishes() {
 
     // useEffect er en indbygget hook, der kører kode, når komponenten renderes eller når afhængigheder ændres
     useEffect(() => {
-        if (dishes.length > 0) {
+        if (dishes.length > 0) { // Tjekker om der er noget i dishes array'et
             setFilteredDishes(dishes) // Når retterne er hentet, opdateres den filtrerede liste
         }
     }, [dishes]) // useEffect kører, når 'dishes' ændres
