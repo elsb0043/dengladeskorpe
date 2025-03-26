@@ -25,6 +25,7 @@ function SingleviewDish() {
   const [size, setSize] = useState("normal") // Default størrelse
   const [price, setPrice] = useState(0)
   const [ingredient, setIngredient] = useState([]) // Toppings
+  const [ingredients, setIngredients] = useState([]) // Toppings
   const [selectedTopping, setSelectedTopping] = useState('')
 
   // Henter funktion til at tilføje varer til kurven fra basketContext
@@ -84,7 +85,7 @@ function SingleviewDish() {
         <div className={styles.singleViewContent}>
           <h3>{dish.title}</h3> {/* Retternes titel */}
           <div className={styles.singleViewIngredients}>
-            {dish.ingredients.map((ingredient, index) => ( // Iterer over ingredienserne og viser dem
+            {ingredients.ingredients.map((ingredient, index) => ( // Iterer over ingredienserne og viser dem
               <p key={index}>{ingredient}</p>
             ))}
           </div>
