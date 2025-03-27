@@ -2,6 +2,8 @@ import { useEffect, useState } from "react" // Importerer hooks fra React
 import { useParams } from "react-router-dom" // Bruges til at få parametre fra URL'en
 import { useFetchDishes } from "../../hooks/useFetchDishes" // Custom hook til at hente retter
 import { useBasket } from "../../context/basketContext" // Custom hook til at interagere med kurv
+import { ToastContainer, toast } from 'react-toastify' // Popup besked til at informere om retten er tilføjet til kurv
+import 'react-toastify/dist/ReactToastify.css'
 import PageHeader from "../../components/PageHeader/PageHeader" // Importerer komponent til header
 import headerImg from "/assets/headerImg.png" // Importerer billede til header
 import Navigation from "../../components/Navigation/Navigation" // Importerer navigation-komponent
@@ -70,6 +72,12 @@ function SingleviewDish() {
     setSelectedTopping(topping) // Opdaterer valgt topping i state
   }
 
+  const showToastMessage = () => {
+    toast.success("Ordre er tilføjet til kurv", {
+      position: "bottom-right"
+    })
+  }
+
   // Hvis retten ikke er hentet eller der opstår en fejl, vis en meddelelse
   if (localLoading) return <p>Loading...</p>
   if (error) return <p>Error: {error}</p>
@@ -103,7 +111,8 @@ function SingleviewDish() {
             <h2>{price},-</h2> {/* Vis den opdaterede pris */}
           </div>
           {/* Knap til at tilføje retten til kurven */}
-          <Button text={`Tilføj ${dish.title} til kurven`} onClick={handleAddToBasket} />
+          <Button text={`Tilføj ${dish.title} til kurven`} onClick={handleAddToBasket} onClickExtra={showToastMessage} />
+          <ToastContainer />
         </div>
       </div>
       <Footer /> {/* Vist footer */}

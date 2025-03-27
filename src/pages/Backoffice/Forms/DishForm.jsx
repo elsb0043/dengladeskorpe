@@ -16,7 +16,7 @@ const DishForm = ({ isEditMode }) => {
     const { refetch } = useOutletContext() // Henter refetch funktionen fra Outlet context
     const navigate = useNavigate() // Bruges til at navigere efter submit
     const { id } = useParams() // Henter id fra URL (bruges i edit mode)
-    const { createDish, fetchDishById, updateDish } = useFetchDishes() // Henter funktioner til at hente og opdatere retter
+    const { createDish, fetchDishById } = useFetchDishes() // Henter funktioner til at hente og opdatere retter
 
     // useEffect hook til at hente eksisterende data, hvis vi er i redigeringstilstand
     useEffect(() => {
@@ -74,7 +74,6 @@ const DishForm = ({ isEditMode }) => {
             let response
             if (isEditMode && id) {
                 dishData.append("id", id) // Hvis vi er i redigeringstilstand, tilføj id
-                response = await updateDish(dishData) // Opdater retten
             } else {
                 response = await createDish(dishData) // Opret en ny ret
             }
@@ -176,7 +175,7 @@ const DishForm = ({ isEditMode }) => {
             {/* Knap til at submitte formularen */}
             <Button2
                 type="submit"
-                buttonText={isEditMode ? "Opdater ret" : "Tilføj ret"} // Dynamisk tekst afhængigt af om vi er i redigeringstilstand
+                buttonText="Tilføj ret" // Dynamisk tekst afhængigt af om vi er i redigeringstilstand
                 background={!isEditMode ? "green" : undefined} // Sæt baggrundsfarve til grøn, hvis vi er i tilføj tilstand
             />
         </form>

@@ -64,10 +64,10 @@ const BackofficeDishes = () => {
                   onClick={() => handleConfirmation(dish._id)}
                 />
                 {/* Redigeringsknap */}
-                <Button2
+                {/* <Button2
                   buttonText="Redigér"
                   onClick={() => handleEdit(dish._id)}
-                />
+                /> */}
               </td>
             </tr>
           ))}

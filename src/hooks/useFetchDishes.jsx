@@ -61,7 +61,7 @@ const useFetchDishes = () => {
     }
 
     // OPDATER RETTER
-    const updateDish = async (formData) => {
+    /* const updateDish = async (formData) => {
         try {
             const response = await fetch("http://localhost:3042/dish", {
                 method: "PUT",
@@ -79,7 +79,7 @@ const useFetchDishes = () => {
             console.error("Fejl ved opdatering:", error) // Log fejl til konsol
             throw error // Kaster fejl videre
         }
-    }
+    } */
 
     // SLET RETTER
     const deleteDish = async (params) => {
@@ -152,7 +152,6 @@ const useFetchDishes = () => {
         fetchDishById,
         setFilteredDishes,
         createDish,
-        updateDish,
         deleteDish,
         isLoading,
         refetch,
