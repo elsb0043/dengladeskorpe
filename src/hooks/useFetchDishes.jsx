@@ -114,17 +114,17 @@ const useFetchDishes = () => {
                 throw new Error(`Failed to fetch dish: ${errorText}`)
             }
 
-            const dish = await response.json() // Parse JSON svar
+            const data = await response.json() // Parse JSON svar
 
             return {
-                ...dish,
+                ...data.data,
                 price: {
-                    normal: dish.price?.normal || 0,
-                    family: dish.price?.family || 0,
+                    normal: data.data.price?.normal || 0,
+                    family: data.data.price?.family || 0,
                 },
-                category: dish.category || "Unknown",
-                title: dish.title || "", // Sikrer at title bliver inkluderet
-                ingredients: dish.ingredients || "" // Sikrer at ingredients bliver inkluderet
+                category: data.data.category || "Unknown",
+                title: data.data.title || "", // Sikrer at title bliver inkluderet
+                ingredients: data.data.ingredients || "" // Sikrer at ingredients bliver inkluderet
             }
 
         } catch (error) {
