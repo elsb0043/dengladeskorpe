@@ -34,7 +34,7 @@
             text-shadow: 2px 3px 3px #b9b9b9;
         }
 
-        .name, .topic {
+        .name, .subject {
             padding: 1rem 0 1rem 1rem;
             width: 80vw;
             margin: 1rem;
@@ -66,7 +66,7 @@
 @media (min-width: 768px) {
     .formContent {
         form {
-            .name, .topic {
+            .name, .subject {
                 width: 40vw;
             }
     
