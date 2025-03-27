@@ -20,14 +20,13 @@ function SingleviewDish() {
   const { fetchDishById, error } = useFetchDishes()
 
   // State til at holde retten, loading status, størrelse, pris, ingredienser og topping
-  const [dish, setDish] = useState(null)
+  const [dish, setDish] = useState([])
   const [localLoading, setLocalLoading] = useState(true)
   const [size, setSize] = useState("normal") // Default størrelse
   const [price, setPrice] = useState(0)
   const [ingredient, setIngredient] = useState([]) // Toppings
-  const [ingredients, setIngredients] = useState([]) // Toppings
   const [selectedTopping, setSelectedTopping] = useState('')
-
+  
   // Henter funktion til at tilføje varer til kurven fra basketContext
   const { addToBasket } = useBasket()
 
@@ -85,9 +84,9 @@ function SingleviewDish() {
         <div className={styles.singleViewContent}>
           <h3>{dish.title}</h3> {/* Retternes titel */}
           <div className={styles.singleViewIngredients}>
-            {ingredients.ingredients.map((ingredient, index) => ( // Iterer over ingredienserne og viser dem
-              <p key={index}>{ingredient}</p>
-            ))}
+          {dish.ingredients.map((ingredient, index) => (
+            <p key={index}>{ingredient}</p>
+          ))}
           </div>
           {/* Dropdown-menu for valg af topping */}
           <TopDropdown
