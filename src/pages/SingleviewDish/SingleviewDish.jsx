@@ -20,7 +20,7 @@ function SingleviewDish() {
   const { fetchDishById, error } = useFetchDishes()
 
   // State til at holde retten, loading status, størrelse, pris, ingredienser og topping
-  const [dish, setDish] = useState([])
+  const [dish, setDish] = useState({})
   const [localLoading, setLocalLoading] = useState(true)
   const [size, setSize] = useState("normal") // Default størrelse
   const [price, setPrice] = useState(0)
@@ -84,7 +84,7 @@ function SingleviewDish() {
         <div className={styles.singleViewContent}>
           <h3>{dish.title}</h3> {/* Retternes titel */}
           <div className={styles.singleViewIngredients}>
-          {dish.ingredients.map((ingredient, index) => (
+          {dish.ingredients?.map((ingredient, index) => (
             <p key={index}>{ingredient}</p>
           ))}
           </div>
